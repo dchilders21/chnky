@@ -29,11 +29,13 @@ const Item = ({
 	const columnSizeOnWidescreen = columnCount / columnCountOnWidescreen;
 	const columnSizeOnFullhd = columnCount / columnCountOnFullhd;
 
-	const imageHeight =
+	/* const imageHeight =
 		themeSettings.list_image_max_height &&
 		themeSettings.list_image_max_height > 0
 			? themeSettings.list_image_max_height
-			: 'auto';
+			: 'auto'; */
+
+	const imageHeight = 'auto';
 	const placeholderHeight =
 		themeSettings.list_image_max_height &&
 		themeSettings.list_image_max_height > 0

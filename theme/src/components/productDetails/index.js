@@ -10,6 +10,7 @@ import DiscountCountdown from './discountCountdown';
 import AddToCartButton from './addToCartButton';
 import Attributes from './attributes';
 import Gallery from './gallery';
+import VideoPlayer from './../videoPlayer';
 import Options from './options';
 import Price from './price';
 import Quantity from './quantity';
@@ -115,6 +116,19 @@ export default class ProductDetails extends React.Component {
 						? selectedVariant.stock_quantity
 						: product.stock_quantity;
 
+		const videoJsOptions = {
+			autoplay: true,
+			controls: true,
+			sources: [
+				{
+					src:
+						'https://s3-us-west-1.amazonaws.com/april2018reykjavik/test_1080.mp4',
+					type: 'video/mp4'
+				}
+			],
+			width: 600
+		};
+
 		if (product) {
 			return (
 				<Fragment>
@@ -125,7 +139,7 @@ export default class ProductDetails extends React.Component {
 									{themeSettings.show_product_breadcrumbs && (
 										<Breadcrumbs product={product} categories={categories} />
 									)}
-									<Gallery images={product.images} />
+									<VideoPlayer {...videoJsOptions} />
 								</div>
 								<div className="column is-5">
 									<div className="content">
