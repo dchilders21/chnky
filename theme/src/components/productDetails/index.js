@@ -106,6 +106,8 @@ export default class ProductDetails extends React.Component {
 
 	render() {
 		const { product, settings, categories } = this.props;
+		console.log(product);
+		console.log(categories);
 		const { selectedVariant, isAllOptionsSelected } = this.state;
 		const maxQuantity =
 			product.stock_status === 'discontinued'
@@ -139,7 +141,11 @@ export default class ProductDetails extends React.Component {
 									{themeSettings.show_product_breadcrumbs && (
 										<Breadcrumbs product={product} categories={categories} />
 									)}
-									<VideoPlayer {...videoJsOptions} />
+									{product.category_name === 'Photos' ? (
+										<Gallery images={product.images} />
+									) : (
+										<VideoPlayer {...videoJsOptions} />
+									)}
 								</div>
 								<div className="column is-5">
 									<div className="content">
@@ -160,10 +166,6 @@ export default class ProductDetails extends React.Component {
 										<Options
 											options={product.options}
 											onChange={this.onOptionChange}
-										/>
-										<Quantity
-											maxQuantity={maxQuantity}
-											onChange={this.setQuantity}
 										/>
 										<div className="button-addtocart">
 											<AddToCartButton
@@ -209,20 +211,6 @@ export default class ProductDetails extends React.Component {
 							limit={themeSettings.limit_viewed_products || 4}
 						/>
 					)}
-
-					{themeSettings.disqus_shortname &&
-						themeSettings.disqus_shortname !== '' && (
-							<section className="section">
-								<div className="container">
-									<Disqus
-										shortname={themeSettings.disqus_shortname}
-										identifier={product.id}
-										title={product.name}
-										url={product.url}
-									/>
-								</div>
-							</section>
-						)}
 				</Fragment>
 			);
 		} else {
